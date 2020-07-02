@@ -12,6 +12,8 @@ OptionParser.new do |opt|
 end.parse!
 
 
+
+
 #Handling no dir condition
 if(options.dir==nil)
 	options.dir=`pwd`.chomp
@@ -82,7 +84,7 @@ elsif(options.type=="files")
 elsif(options.type=='dirs')
 	foo(->(fileType){(fileType=='directory')? true : false },options,make_flag(options))
 else
-	puts 'Valid --types are : '
+	puts 'Valid --types or -t are : '
 	puts '1) files'
 	puts '2) dirs'
 	puts '3) all(default)'
@@ -90,4 +92,5 @@ else
 	puts '-d \'directory/path\' to list from a particular directory'
 	puts '-a for listing all including hidden files and folders'
 	puts '-l for listed format. Same way as in "ls -l" '
+	puts 'use --help or -h for help'
 end
