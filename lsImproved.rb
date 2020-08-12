@@ -54,19 +54,19 @@ def foo(someFunc,options,flags)
 	##got the filename
 
 	i=0
-	`ls #{flags} '#{options.dir}'`.each_line {
+	`ls #{flags} \"#{options.dir}\"`.each_line {
 		|x|
 		x.chomp!
 		if(x.split[0]=='total')
-			next	
+			next
 		end
 		fname=nameArr[i]
 		i+=1
-		y=`file '#{options.dir}/#{fname}'`.split[-1]
+		y=`file \"#{options.dir}/#{fname}\"`.split[-1]
 		if(someFunc.(y))
 			if(options.list == nil)
 				len=fname.split.length
-				puts (len>1)? "'"+fname+"'" : x
+				puts (len>1)? "\'"+fname+"\'" : x
 			else
 				puts x
 			end
@@ -78,7 +78,7 @@ end
 
 #main thing
 if(options.type=="all")
-	system("ls #{make_flag(options)} '#{options.dir}' ")
+	system("ls #{make_flag(options)} \'#{options.dir}\' ")
 elsif(options.type=="files")
 	foo(->(fileType){(fileType!='directory')? true : false },options,make_flag(options))
 elsif(options.type=='dirs')
