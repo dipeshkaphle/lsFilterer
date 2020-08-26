@@ -62,7 +62,7 @@ def foo(someFunc,options,flags)
 		end
 		fname=nameArr[i]
 		i+=1
-		y=`file \"#{options.dir}/#{fname}\"`.split[-1]
+        y=File.directory?("#{options.dir}/#{fname}") == true ? 'directory' : 'file'
 		if(someFunc.(y))
 			if(options.list == nil)
 				len=fname.split.length
